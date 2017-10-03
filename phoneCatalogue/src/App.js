@@ -1,4 +1,5 @@
  import React from 'react';
+    import './App.css'
 
     class SelectBox extends React.Component {
       render() {
@@ -18,12 +19,26 @@
 
     // TODO (PhoneItem component)
 
+    class PhoneItem extends React.Component{
+      render(){
+        return(
+           <li className="thumbnail phone-listing">
+            <a  className="thumb">  
+               <img alt={this.props.phone.name}
+                 src={this.props.phone.imageUrl}/> </a>
+                 <h4>{this.props.phone.name} </h4>
+            <p>{this.props.phone.snippet}</p>
+        </li> 
+          )
+      }
+    }
+
 
     class FilteredPhoneList extends React.Component {
       render() {
-          var displayedPhones = null;//this.props.phones.map(function(phone) {
-          //  return <PhoneItem key={phone.id} phone={phone } /> ;
-          //}) ;
+          var displayedPhones = this.props.phones.map(function(phone) {
+            return <PhoneItem key={phone.id} phone={phone} /> ;
+          }) ;
           return (
                   <div className="col-md-10">
                     <ul className="phones">
@@ -42,7 +57,7 @@
                  <div className="container-fluid">
                    <div className="row">
                        <SelectBox />
-                       {/* TODO */}
+                       <FilteredPhoneList phones={this.props.phones}/>
                   </div> 
                   </div>                   
                 </div>
