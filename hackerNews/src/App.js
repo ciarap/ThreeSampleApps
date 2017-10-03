@@ -52,9 +52,18 @@
 
     class NewsList extends React.Component {
        render() {
-           return null;   // TODO (incomplete)
-       } 
-     }        
+       var displayedPosts = this.props.posts.map(function(post) {
+            return <NewsItem key={post.id} post={post} /> ;
+          }) ;
+          return (
+                  <div className="col-md-10">
+                    <ul className="posts">
+                        {displayedPosts}
+                    </ul>
+                  </div>
+            ) ;
+      }
+    }  
 
     class HackerApp extends React.Component {
       render() {
@@ -64,7 +73,7 @@
                   <div className="col-md-6 col-md-offset-3">
                <div className="page-header">
                       <h1>Hacker News</h1>
-                      <NewsList  />       {/* TODO - incomplete */}
+                      <NewsList posts={this.props.posts} />       {/* TODO - incomplete */}
                       <Form />
                </div>
                  </div>
